@@ -1,0 +1,8 @@
+unit_id,location,vibration,temperature,oil_condition,load_levels,operating_hours
+IT-9000,Core Distribution,8.5,108,12,96,14200
+IT-9001,Substation North,1.1,45,88,62,3200
+IT-9002,Main Feed,4.2,72,55,78,8500
+IT-9005,Auxiliary Gen,0.9,51,90,58,2100
+IT-9008,Backup Line,1.4,48,85,64,4500
+IT-9010,Grid East,7.8,102,18,94,13800
+IT-9012,Grid West,3.8,68,48,72,9100

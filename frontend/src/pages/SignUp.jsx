@@ -1,98 +1,151 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { User, Lock, Mail, ArrowRight, Briefcase } from 'lucide-react';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import MaterialIcon from "../components/MaterialIcon";
+import { signupUser } from "../api/auth";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '', role: 'customer' });
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", role: "customer" });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup attempt', formData);
+    setError("");
+    setSuccess("");
+    setLoading(true);
+    try {
+      await signupUser(formData);
+      setSuccess("Operator credentials created successfully! Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (err) {
+      setError(err.message || "Failed to create credentials. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="bg-brand-light min-h-screen py-24 flex items-center justify-center">
-      <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-10 max-w-md w-full mx-4">
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <User className="w-8 h-8 text-brand-accent" />
-          </div>
-          <h1 className="text-3xl font-bold text-brand-dark mb-2">Create Account</h1>
-          <p className="text-brand-grey">Join our intelligent workflow platform</p>
+    <main className="flex min-h-screen w-full overflow-hidden bg-surface font-body text-on-surface antialiased">
+      <section className="relative hidden w-1/2 items-center justify-center overflow-hidden bg-inverse-surface lg:flex">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute right-[-10%] top-[-10%] h-[600px] w-[600px] rounded-full bg-primary-container blur-[120px]" />
+          <div className="absolute bottom-[-5%] left-[-5%] h-[400px] w-[400px] rounded-full bg-primary blur-[100px]" />
         </div>
+        <div className="relative z-10 max-w-xl p-16">
+          <div className="mb-12 flex items-center gap-3">
+            <MaterialIcon name="bolt" className="text-4xl text-primary-container" filled />
+            <h1 className="font-headline text-3xl font-extrabold tracking-tighter text-white">Iconic Transformers</h1>
+          </div>
+          <h2 className="mb-6 font-headline text-5xl font-bold leading-tight text-white">
+            Join the <span className="text-primary-container">Industrial OS</span>
+          </h2>
+          <p className="text-lg leading-relaxed text-secondary-fixed-dim">
+            Create your operator credentials to access predictive maintenance, demand forecasting, and fleet diagnostics.
+          </p>
+        </div>
+      </section>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-sm font-bold text-brand-dark">Full Name</label>
-            <div className="relative">
-              <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input 
-                type="text" 
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition-all"
-                placeholder="John Doe"
-                required
-              />
-            </div>
+      <section className="flex w-full items-center justify-center bg-surface-bright p-6 md:p-12 lg:w-1/2 lg:p-24">
+        <div className="w-full max-w-md">
+          <div className="mb-10 flex items-center gap-2 lg:hidden">
+            <MaterialIcon name="bolt" className="text-3xl text-primary" filled />
+            <span className="font-headline text-xl font-bold tracking-tighter">Iconic Transformers</span>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-bold text-brand-dark">Email Address</label>
-            <div className="relative">
-              <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input 
-                type="email" 
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition-all"
-                placeholder="john@example.com"
-                required
-              />
-            </div>
+          <div className="mb-12">
+            <h3 className="mb-2 font-headline text-3xl font-bold tracking-tight">Request Access</h3>
+            <p className="font-medium text-secondary">Register for precision operations platform access.</p>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-bold text-brand-dark">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input 
-                type="password" 
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition-all"
-                placeholder="••••••••"
-                required
-              />
+          {error && (
+            <div className="mb-6 rounded-lg bg-red-500/10 p-4 border border-red-500/20 text-red-500 text-sm font-semibold">
+              {error}
             </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-bold text-brand-dark">Account Type</label>
-            <div className="relative">
-              <Briefcase className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <select name="role" value={formData.role} onChange={handleChange} className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition-all appearance-none cursor-pointer">
-                <option value="customer">Customer</option>
-                <option value="admin">Admin / Staff</option>
-              </select>
+          )}
+          {success && (
+            <div className="mb-6 rounded-lg bg-emerald-500/10 p-4 border border-emerald-500/20 text-emerald-500 text-sm font-semibold">
+              {success}
             </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {[
+              { id: "name", label: "Full Name", icon: "person", type: "text", placeholder: "John Doe" },
+              { id: "email", label: "Operation Email", icon: "mail", type: "email", placeholder: "name@precision.com" },
+              { id: "password", label: "Access Key", icon: "lock", type: "password", placeholder: "••••••••••••" },
+            ].map((field) => (
+              <div key={field.id} className="space-y-1.5">
+                <label htmlFor={field.id} className="text-xs font-bold uppercase tracking-widest text-outline">
+                  {field.label}
+                </label>
+                <div className="group relative">
+                  <MaterialIcon
+                    name={field.icon}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 text-xl text-outline transition-colors group-focus-within:text-primary"
+                  />
+                  <input
+                    id={field.id}
+                    name={field.id}
+                    type={field.type}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    placeholder={field.placeholder}
+                    required
+                    className="w-full border-0 border-b-2 border-outline-variant/40 bg-transparent py-3 pl-8 pr-4 font-medium transition-all focus:border-primary focus:ring-0"
+                  />
+                </div>
+              </div>
+            ))}
+
+            <div className="space-y-1.5">
+              <label htmlFor="role" className="text-xs font-bold uppercase tracking-widest text-outline">
+                Account Type
+              </label>
+              <div className="group relative">
+                <MaterialIcon
+                  name="badge"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 text-xl text-outline transition-colors group-focus-within:text-primary"
+                />
+                <select
+                  id="role"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  className="w-full appearance-none border-0 border-b-2 border-outline-variant/40 bg-transparent py-3 pl-8 pr-4 font-medium transition-all focus:border-primary focus:ring-0"
+                >
+                  <option value="customer">Customer</option>
+                  <option value="admin">Admin / Staff</option>
+                </select>
+              </div>
+            </div>
+
+             <button
+              type="submit"
+              disabled={loading}
+              className="group flex w-full items-center justify-center gap-2 rounded-lg py-4 font-headline font-bold text-white kinetic-gradient industrial-shadow transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? "Generating Credentials..." : "Create Credentials"}
+              {!loading && <MaterialIcon name="arrow_forward" className="text-xl transition-transform group-hover:translate-x-1" />}
+            </button>
+          </form>
+
+          <div className="mt-12 text-center">
+            <p className="text-sm font-medium text-secondary">
+              Already registered?{" "}
+              <Link to="/login" className="font-bold text-primary hover:underline">
+                Sign in
+              </Link>
+            </p>
           </div>
-
-          <button type="submit" className="w-full bg-brand-accent text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-600 transition-colors flex justify-center items-center shadow-lg hover:shadow-xl">
-            Register <ArrowRight className="w-5 h-5 ml-2" />
-          </button>
-        </form>
-
-        <p className="text-center mt-8 text-brand-grey text-sm">
-          Already have an account? <Link to="/login" className="text-brand-accent font-bold hover:underline">Log in</Link>
-        </p>
-      </div>
-    </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

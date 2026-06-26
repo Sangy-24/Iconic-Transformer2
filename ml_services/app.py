@@ -4,7 +4,7 @@ import pandas as pd
 import io
 import json
 
-from models.predictive_maintenance import predict_health, FEATURES
+from models.predictive_maintenance import predict_health, analyze_fleet, load_sample_fleet_df, FEATURES
 from models.demand_forecasting import generate_forecast
 
 app = FastAPI(title="Iconic Transformers ML API")
@@ -57,26 +57,60 @@ async def predict_maintenance(file: UploadFile = File(...)):
         )
     
     try:
-        # Run random forest model
+        fleet = analyze_fleet(df)
         results = predict_health(df)
 
-        # Derive a simple aggregate risk level from all rows
         risk_level = "Low"
-        if any("Critical" in r for r in results):
+        if fleet["critical_count"] > 0:
             risk_level = "High"
-        elif any("Maintenance" in r for r in results):
+        elif fleet["attention_count"] > 0:
             risk_level = "Medium"
-        
+
+        next_service_days = None
+        if fleet["timeline"]:
+            next_service_days = fleet["timeline"][0]["days_until"]
+
+        time_window = "No action required"
+        if next_service_days is not None:
+            if next_service_days <= 0:
+                time_window = "Immediate action required"
+            elif next_service_days == 1:
+                time_window = "1 day"
+            else:
+                time_window = f"{next_service_days} days"
+
         return {
             "status": "success",
             "prediction": {
                 "health": results[0] if len(results) > 0 else "Unknown",
                 "risk_level": risk_level,
-                "time_window": "15 days",
-                "details": f"Analyzed {len(df)} records.",
+                "time_window": time_window,
+                "details": f"Analyzed {fleet['records_analyzed']} telemetry records across {fleet['total_units']} units.",
                 "all_results": results,
             },
+            "fleet": fleet,
             "file_name": file.filename,
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/predict-maintenance/sample")
+def predict_maintenance_sample():
+    try:
+        df = load_sample_fleet_df()
+        fleet = analyze_fleet(df)
+        results = predict_health(df)
+
+        return {
+            "status": "success",
+            "source": "fleet_sample.csv",
+            "prediction": {
+                "health": results[0] if len(results) > 0 else "Unknown",
+                "risk_level": "High" if fleet["critical_count"] else ("Medium" if fleet["attention_count"] else "Low"),
+                "details": f"Demo fleet with {fleet['total_units']} monitored units.",
+            },
+            "fleet": fleet,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

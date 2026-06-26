@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Iconic Transformers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#99e1d9",
+                    "secondary": "#535f6e",
+                    "outline-variant": "#bec9c6",
+                    "on-background": "#181c1d",
+                    "on-surface": "#181c1d",
+                    "surface-dim": "#d7dbdb",
+                    "surface-container-low": "#f1f4f4",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#623f14",
+                    "primary": "#1a6963",
+                    "primary-fixed-dim": "#8cd3cc",
+                    "surface-container-high": "#e5e9e9",
+                    "on-primary-container": "#156660",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#1a6963",
+                    "secondary-fixed-dim": "#bbc8d9",
+                    "surface-bright": "#f7fafa",
+                    "tertiary-fixed-dim": "#f0bd87",
+                    "on-primary-fixed": "#00201e",
+                    "surface": "#f7fafa",
+                    "outline": "#6f7977",
+                    "tertiary-container": "#ffca93",
+                    "surface-container-highest": "#e0e3e3",
+                    "inverse-on-surface": "#eef1f1",
+                    "primary-fixed": "#a7f0e8",
+                    "on-tertiary-container": "#7a5327",
+                    "on-secondary-fixed-variant": "#3c4856",
+                    "surface-variant": "#e0e3e3",
+                    "tertiary-fixed": "#ffdcbb",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#586472",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#7d562a",
+                    "surface-container": "#ebeeee",
+                    "on-secondary-fixed": "#101d29",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3f4947",
+                    "background": "#f7fafa",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2d3131",
+                    "on-primary-fixed-variant": "#00504b",
+                    "secondary-fixed": "#d7e4f5",
+                    "secondary-container": "#d4e1f2",
+                    "inverse-primary": "#8cd3cc",
+                    "on-tertiary-fixed": "#2c1700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #1a6963 0%, #99e1d9 100%);
+        }
+        .industrial-shadow {
+            box-shadow: 0 20px 40px rgba(32, 44, 57, 0.06);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(190, 201, 198, 0.15);
+        }
+        input:focus {
+            box-shadow: 0 0 0 4px rgba(140, 211, 204, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- Shell Suppression: Login screen implies no navigation shell to prioritize focus -->
+<main class="flex min-h-screen w-full">
+<!-- Left Side: Schematic Illustration (Architectural Ghost) -->
+<section class="hidden lg:flex w-1/2 relative bg-inverse-surface overflow-hidden items-center justify-center">
+<!-- Decorative Background Element -->
+<div class="absolute inset-0 opacity-20">
+<div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-primary-container blur-[120px]"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full bg-primary blur-[100px]"></div>
+</div>
+<div class="relative z-10 p-16 flex flex-col items-start max-w-2xl">
+<div class="flex items-center gap-3 mb-12">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h1 class="font-headline font-extrabold text-3xl text-white tracking-tighter">Iconic Transformers</h1>
+</div>
+<div class="mb-10 p-1 bg-white/5 rounded-lg border border-white/10">
+<img alt="Futuristic industrial transformer" class="rounded-md mix-blend-screen opacity-80 filter brightness-110" data-alt="3D blueprint schematic of a high-tech power transformer with glowing teal circuit lines and futuristic energy pulses in a dark laboratory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqPuZX6hZKPopvdOnvM1sXQjBAAWNJe1Q-DwPgD3bBta5So7Yn3bGSD8YfQRwRT7mISGziJfP-7kNmUODX5XMUGXTM8qowMFwKulorixRmSpNoBEvzZFQgALtMnrNbE3sNMeFHen7Q-PszBY8p-jvb15htV-JTt3CxbUr9W8oal32BB2DF3U4C7lwwf7ROJVQnwvVxHYdRfMdjL2URjFcFbOSNufknUgvLfJbrfK50aMVUruOQgOu26ulEC8nngOd0FAwshNB2P-8"/>
+</div>
+<h2 class="font-headline text-5xl font-bold text-white leading-tight mb-6 tracking-tight">
+                    Engineering <span class="text-primary-container">Excellence</span> at Scale.
+                </h2>
+<p class="text-secondary-fixed-dim text-lg max-w-md leading-relaxed">
+                    Access the Industrial OS v2.0 for precision monitoring, real-time analytics, and AI-driven load balancing.
+                </p>
+<div class="mt-12 flex gap-8">
+<div class="flex flex-col">
+<span class="text-primary-container font-headline font-bold text-2xl">99.9%</span>
+<span class="text-outline-variant text-xs uppercase tracking-widest font-medium">Uptime Protocol</span>
+</div>
+<div class="flex flex-col">
+<span class="text-primary-container font-headline font-bold text-2xl">0.02ms</span>
+<span class="text-outline-variant text-xs uppercase tracking-widest font-medium">Network Latency</span>
+</div>
+</div>
+</div>
+<!-- Asymmetric Grid Line Decor -->
+<div class="absolute inset-0 pointer-events-none opacity-10">
+<div class="w-full h-full" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+</div>
+</section>
+<!-- Right Side: Login Form (The Glass Panel) -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 lg:p-24 bg-surface-bright relative">
+<div class="w-full max-w-md">
+<!-- Mobile Branding -->
+<div class="lg:hidden flex items-center gap-2 mb-10">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-headline font-bold text-xl text-on-surface tracking-tighter">Iconic Transformers</span>
+</div>
+<div class="mb-12">
+<h3 class="font-headline text-3xl font-bold text-on-surface tracking-tight mb-2">Welcome Back</h3>
+<p class="text-secondary font-medium">Secure authentication for precision operations.</p>
+</div>
+<!-- Toggle Tabs -->
+<div class="flex p-1.5 bg-surface-container-low rounded-lg mb-10 industrial-shadow">
+<button class="flex-1 py-2.5 px-4 rounded-md text-sm font-semibold transition-all duration-300 bg-surface-container-lowest text-primary shadow-sm">
+                        Customer Login
+                    </button>
+<button class="flex-1 py-2.5 px-4 rounded-md text-sm font-semibold text-secondary hover:text-on-surface transition-all duration-300">
+                        Admin Login
+                    </button>
+</div>
+<!-- Form Fields -->
+<form class="space-y-6">
+<div class="space-y-1.5">
+<label class="text-xs font-bold uppercase tracking-widest text-outline" for="email">Operation Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors text-xl" data-icon="mail">mail</span>
+<input class="w-full pl-8 pr-4 py-3 bg-transparent border-0 border-b-2 border-outline-variant/40 focus:border-primary focus:ring-0 text-on-surface placeholder:text-outline/50 transition-all font-medium" id="email" placeholder="name@precision.com" type="email"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="text-xs font-bold uppercase tracking-widest text-outline" for="password">Access Key</label>
+<a class="text-xs font-semibold text-primary hover:underline" href="#">Reset Key?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors text-xl" data-icon="lock">lock</span>
+<input class="w-full pl-8 pr-4 py-3 bg-transparent border-0 border-b-2 border-outline-variant/40 focus:border-primary focus:ring-0 text-on-surface placeholder:text-outline/50 transition-all font-medium" id="password" placeholder="••••••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-2">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" id="remember" type="checkbox"/>
+<label class="text-sm font-medium text-secondary" for="remember">Authorize this terminal for 30 days</label>
+</div>
+<button class="w-full py-4 kinetic-gradient text-white font-headline font-bold rounded-lg industrial-shadow flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all group" type="submit">
+                        Enter Command Center
+                        <span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative my-10">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/20"></div>
+</div>
+<div class="relative flex justify-center text-xs uppercase tracking-[0.2em] font-bold">
+<span class="bg-surface-bright px-4 text-outline/60">External Auth Protocols</span>
+</div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-3 px-4 rounded-lg bg-surface-container-lowest ghost-border industrial-shadow hover:bg-surface-container-low transition-all">
+<img alt="Google" class="w-5 h-5 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo84J8e2evUfwJcsnOdsTBoF9J_klTrCS5Eo4IDHjP0yoo7eAZVWS8y1wy1SNiXFYN348OgnUIUt0rNPsXrB61-W7YcGzNA6I5gxxgU-l4x5ftUHE-DvUv4MaD2YfwXqrP0VP_xZmDbfwKV2Mpyf5ZPGCb7xpZS10Z5exv0BcfhUQAvqh2Em4DPj1Nt-ipKZaZRkofw2nMu6q_v-XYhvlMWs9PFJq3uhOdra9-bTeWiWNtA8DzvWfNw1ekpHYDQUVsZb0z8hZ1rQo"/>
+<span class="text-sm font-semibold text-secondary">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3 px-4 rounded-lg bg-surface-container-lowest ghost-border industrial-shadow hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-blue-600" data-icon="cloud" style="font-variation-settings: 'FILL' 1;">cloud</span>
+<span class="text-sm font-semibold text-secondary">Azure</span>
+</button>
+</div>
+<!-- Footer Link -->
+<div class="mt-12 text-center">
+<p class="text-secondary text-sm font-medium">
+                        New Operator? <a class="text-primary font-bold hover:underline" href="#">Request Access Credentials</a>
+</p>
+</div>
+</div>
+<!-- Absolute Decorative Background for Right Side -->
+<div class="absolute top-0 right-0 p-8">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-widest">Server Status: Optimized</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Micro-tactile Footer Credit -->
+<footer class="fixed bottom-6 left-1/2 -translate-x-1/2 lg:left-auto lg:right-12 lg:translate-x-0 z-50">
+<p class="font-label text-[10px] text-outline/40 uppercase tracking-[0.3em] font-black">
+            © 2024 Iconic Transformers. Engineering Excellence.
+        </p>
+</footer>
+</body></html>
