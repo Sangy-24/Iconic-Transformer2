@@ -2,10 +2,8 @@ from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import io
-import json
 
 from models.predictive_maintenance import predict_health, analyze_fleet, load_sample_fleet_df, FEATURES
-from models.demand_forecasting import generate_forecast
 
 app = FastAPI(title="Iconic Transformers ML API")
 
@@ -152,6 +150,8 @@ async def forecast_demand(file: UploadFile = File(...), product_id: str = Form(N
             if product_name_col and not filtered_df.empty:
                 selected_product["product_name"] = str(filtered_df[product_name_col].iloc[0])
 
+        from models.demand_forecasting import generate_forecast
+
         # Run forecasting model on uploaded (and possibly product-filtered) history
         result_df = generate_forecast(history_df=filtered_df, periods=12)
         # Convert datetime to string for JSON serialization
@@ -229,3 +229,8 @@ async def chat(request: dict):
         "status": "success",
         "response": f"This is an automated response to your query regarding: '{query}'. Our team will review this if you need further assistance."
     }
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="127.0.0.1", port=8000)

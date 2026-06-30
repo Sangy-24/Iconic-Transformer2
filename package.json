@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:ml": "python ml_services/app.py"
+  },
   "dependencies": {
     "lucide-react": "^1.21.0",
     "react-router-dom": "^7.18.0"

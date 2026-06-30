@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import MarketingNav from "../components/MarketingNav";
 import MarketingFooter from "../components/MarketingFooter";
 import MaterialIcon from "../components/MaterialIcon";
+import { useCart } from "../context/CartContext";
 
 const categories = [
   "All Services",
@@ -11,85 +13,35 @@ const categories = [
   "Precision Tools",
 ];
 
-const services = [
-  {
-    id: 1,
-    title: "Predictive Coil Calibration",
-    desc: "Advanced algorithmic testing of winding integrity using harmonic resonance analysis.",
-    price: "$2,400",
-    unit: "/unit",
-    label: "Repair",
-    labelClass: "bg-primary-container text-on-primary-container",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBI5P4xl4wasc2iP-heJwr09hEHcF2Ftp7jzOLcDjg6DyqaL8Av5FJO43SGhGBkiiRES-lhov5bJlI3Z2RhwEaWmB1sHytQqkgdF_j9LH4UxgupzXR3Or34QZEQYDYyX2F4wUjqGbQYY8EuqSBYcYxJ36Dvh28mIc3hsYBBoAXEEV8nj3JqHtFg4qL9siMBZQXVmTgRWs0xHOfoBqmE7cLjDM_Bhpwvfygo9qTLfBaFhctS8xipQj5SYOJ0yFVGBrWig_-0j2ODbVI",
-    priceLabel: "Starting at",
-    action: "Add",
-  },
-  {
-    id: 2,
-    title: "Gold Maintenance Tier",
-    desc: "Bi-annual onsite diagnostics with 24/7 remote monitoring and priority response times.",
-    price: "Rs12,999",
-    unit: "/yr",
-    label: "AMC",
-    labelClass: "bg-tertiary-container text-on-tertiary-container",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtQtsLfc_u1findz0YAag4tZivia-ucSaxk4EnevhgQs6C-nm47_ht8vJIWW_ygLX3XaYH7MTAttjCRqUmqvMnzmG6QMPDvRf5EcPeyR4wXupruB8P-LFbkkD6x0-4893HwW88tzR0E5lhVP6D13X4QtCw-mdLnNSBTL2u2e8sCcGOr1sOOgnZcwEtgjZkVYm_O-l6x64SRuN8CC1fyk_T5GcTF8wrHDvtFkN9oEop-6Snqk1BOCHsGaF7FNQWA32nHC6O3M65sUc",
-    priceLabel: "Annual Fee",
-    action: "Quote",
-  },
-  {
-    id: 3,
-    title: "Dielectric Fluid Analysis",
-    desc: "Full laboratory screening for moisture, acidity, and dissolved gas concentrations.",
-    price: "Rs850",
-    unit: "/test",
-    label: "Testing",
-    labelClass: "bg-secondary-container text-on-secondary-container",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD_mp4JtgNHPLIsXOotfziuRpfxq3txWY3Wck41o3hOpW00umjQquvRHfZsHxbEHyc-XeGqFJKhQBzBk27JH8ZrWZnzc2ri66kHsEkWAc2-eI5fo50SwTIzx5B26eEc0u-a3VSPvfkjDCGkvL6SyPga8ADBmsZgcij9Ge5eb3DQalvISwkze_naNR8ZEiTeqnJPfw0y-DQho9fOtYTTEY0XlT7unjNs-rUGXop-KStdT_rszr8KSjyQexSEPuL959Zf1MGnZvUYO8A",
-    priceLabel: "Per Batch",
-    action: "Add",
-  },
-  {
-    id: 4,
-    title: "Laser Core Alignment",
-    desc: "Nanometer-precision structural alignment for maximum electromagnetic efficiency.",
-    price: "Rs4,200",
-    unit: "/fix",
-    label: "Tools",
-    labelClass: "bg-primary-container text-on-primary-container",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB-1a0Qdl2exLAyforEfZ-vmmHuIqQYVLphY4pvsgStAqbKRm3WqIo-3dWo5dlbDJhIHzVM7Nusvqi0qug40BgrCVfNeTRQ5D5NQurjYUEx11I6XcmUlX4khybMgIzKBAkcZW3pODo575zBY5tVc7rPwc24sI30nDG3k3ENsqlNB4xO5-ni9jT2gGya-NEAsJFJSS8wsc5-eyau_32SgSnXbP-Il2FlEVb4f5PBUHx4m2wpJKU1O09iiNeDHb2qLPOdxs6sC_p9Bj8",
-    priceLabel: "Service Fee",
-    action: "Add",
-  },
-  {
-    id: 5,
-    title: "Thermal Cooling Overhaul",
-    desc: "Complete descaling of heat exchangers and fan motor efficiency optimization.",
-    price: "Rs1,750",
-    unit: "/unit",
-    label: "Repair",
-    labelClass: "bg-primary-container text-on-primary-container",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCnVpHEilyyxM2BxSCfvOTV6WavfRvgKPrt8JqOtHg9gddlY0OJokRoG8EaItSlB2O5YtsGf3mqzWAbMJB3gHq8Ehx0IGGLo9y552pKkijeMaoI6ui7paw5VlmYoS9r6QIq4-Nc1MtI3l-W8geoWFyW_P0i27C02BySIOG3OLQmAb4J1G41nt0D7kUaC-GHM-JD5N7nH_FzRcRjjKS3rV5srsSzpEZCwyPTe4ZdeIkow0qrn7oroMUp-Lhvqm36zsx7xeFScbqSU-c",
-    priceLabel: "Base Rate",
-    action: "Add",
-  },
-  {
-    id: 6,
-    title: "Neural Fault Predictor",
-    desc: "Cloud-based AI subscription that predicts hardware failure 90 days in advance.",
-    price: "Rs499",
-    unit: "/mo",
-    label: "AI Tools",
-    labelClass: "bg-primary text-white",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDBwxkayPJMp6S7Svaaw1nZ3rkz16ck2tYvivSlRQLGPnHwRJ3UsABVs1aoxug1y9nmxrpWzXZKJLE44oOq8k5hKttHdamOoIpB8K6HposektwuUiUlzTJi9qc0RF63mF5ex_b9DGp89-ujhtmRceYy_JqQRUz5BSTTLHwHxbiGtYmu0gf-5I-R2RbbdilTVWQauDRxBVlll8guaeQpeArTHxyufkU27hy1H4dvpCzW-JwEkgEmdTo9rJ5leE4A7QVb8s2pKSL60yA",
-    priceLabel: "SaaS Plan",
-    action: "Subscribe",
-    primary: true,
-  },
-];
-
 const Services = () => {
   const [view, setView] = useState("grid");
   const [selectedCategories, setSelectedCategories] = useState(["All Services"]);
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const { addToCart, removeFromCart, cartItems, showToast } = useCart();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:5000/api/services");
+        if (!response.ok) {
+          throw new Error("Failed to fetch services");
+        }
+        const data = await response.json();
+        setServices(data);
+      } catch (err) {
+        console.error(err);
+        setError("Could not load services. Please make sure the backend is running.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchServices();
+  }, []);
 
   const toggleCategory = (category) => {
     if (category === "All Services") {
@@ -105,6 +57,41 @@ const Services = () => {
       return [...withoutAll, category];
     });
   };
+
+  const handleAddToCart = async (service) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      showToast("Please log in to manage your cart", "error");
+      navigate("/login");
+      return;
+    }
+    await addToCart(service._id);
+  };
+
+  const handleRemoveFromCart = async (service) => {
+    await removeFromCart(service._id);
+  };
+
+  const handleBuyNow = (service) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      showToast("Please log in to purchase services", "error");
+      navigate("/login");
+      return;
+    }
+    navigate(`/checkout?buyNow=${service._id}`);
+  };
+
+  const isServiceInCart = (serviceId) => {
+    return cartItems.some((item) => (item.serviceId?._id || item.serviceId) === serviceId);
+  };
+
+  const filteredServices = services.filter((service) => {
+    if (selectedCategories.includes("All Services") || selectedCategories.length === 0) {
+      return true;
+    }
+    return selectedCategories.includes(service.category);
+  });
 
   return (
     <div className="min-h-screen bg-surface">
@@ -131,17 +118,6 @@ const Services = () => {
                   </label>
                 ))}
               </div>
-            </div>
-
-            <div className="rounded-lg bg-inverse-surface p-6 text-white">
-              <p className="mb-2 text-sm font-bold uppercase tracking-widest text-primary-container">Premium Support</p>
-              <h4 className="mb-4 text-xl font-bold">Industrial OS v2.0</h4>
-              <p className="mb-6 text-sm leading-relaxed text-slate-400">
-                Upgrade to enterprise-grade monitoring for real-time asset health analytics.
-              </p>
-              <button type="button" className="w-full rounded-lg bg-primary-container py-3 text-sm font-bold text-on-primary-container transition-all hover:brightness-110">
-                Upgrade Now
-              </button>
             </div>
           </div>
         </aside>
@@ -176,60 +152,100 @@ const Services = () => {
             </div>
           </div>
 
-          <div className={view === "grid" ? "grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-6"}>
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className={`glass-card group relative overflow-hidden rounded-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-industrial-lg ${
-                  view === "list" ? "flex flex-col md:flex-row" : ""
-                }`}
-              >
-                <div className={`relative overflow-hidden ${view === "list" ? "h-48 md:h-auto md:w-72" : "h-64"}`}>
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-                  <div className="absolute right-4 top-4">
-                    <button type="button" className="rounded-full bg-white/20 p-2 text-white backdrop-blur-md transition-all hover:bg-white hover:text-error">
-                      <MaterialIcon name="favorite" filled />
-                    </button>
-                  </div>
-                  <div className="absolute bottom-4 left-4">
-                    <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${service.labelClass}`}>
-                      {service.label}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 font-headline text-xl font-bold text-on-surface">{service.title}</h3>
-                  <p className="mb-6 line-clamp-2 text-sm text-secondary">{service.desc}</p>
-                  <div className="mt-auto flex items-center justify-between">
-                    <div>
-                      <span className="text-xs font-bold uppercase tracking-tighter text-secondary">{service.priceLabel}</span>
-                      <p className="text-2xl font-black text-primary">
-                        {service.price}
-                        <span className="text-sm font-normal text-secondary">{service.unit}</span>
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      className={`flex items-center gap-2 rounded-lg p-3 transition-colors ${
-                        service.primary
-                          ? "bg-primary text-white shadow-lg shadow-primary/30 hover:brightness-110"
-                          : "bg-slate-900 text-white hover:bg-primary"
-                      }`}
-                    >
-                      <MaterialIcon name={service.primary ? "bolt" : "shopping_cart"} className="text-lg" />
-                      <span className="text-xs font-bold uppercase tracking-widest">{service.action}</span>
-                    </button>
-                  </div>
-                </div>
+          {loading ? (
+            <div className="flex h-64 items-center justify-center">
+              <div className="flex flex-col items-center gap-4">
+                <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+                <p className="font-semibold text-secondary">Initializing System Services...</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ) : error ? (
+            <div className="rounded-lg bg-red-500/10 p-6 text-center border border-red-500/20">
+              <MaterialIcon name="error" className="text-4xl text-red-500 mb-2" />
+              <p className="font-bold text-red-500">{error}</p>
+            </div>
+          ) : (
+            <div className={view === "grid" ? "grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-6"}>
+              {filteredServices.map((service) => {
+                const inCart = isServiceInCart(service._id);
+                return (
+                  <div
+                    key={service._id}
+                    className={`glass-card group relative overflow-hidden rounded-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-industrial-lg ${
+                      view === "list" ? "flex flex-col md:flex-row" : ""
+                    }`}
+                  >
+                    <div className={`relative overflow-hidden ${view === "list" ? "h-48 md:h-auto md:w-72" : "h-64"}`}>
+                      <img
+                        src={service.imageUrl}
+                        alt={service.name}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                      <div className="absolute right-4 top-4">
+                        <button type="button" className="rounded-full bg-white/20 p-2 text-white backdrop-blur-md transition-all hover:bg-white hover:text-error">
+                          <MaterialIcon name="favorite" filled />
+                        </button>
+                      </div>
+                      <div className="absolute bottom-4 left-4">
+                        <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${service.labelClass || 'bg-primary-container text-on-primary-container'}`}>
+                          {service.label}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="mb-2 font-headline text-xl font-bold text-on-surface">{service.name}</h3>
+                      <p className="mb-6 line-clamp-2 text-sm text-secondary">{service.description}</p>
+                      <div className="mt-auto flex flex-col gap-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="text-xs font-bold uppercase tracking-tighter text-secondary">{service.priceLabel}</span>
+                            <p className="text-2xl font-black text-primary">
+                              {service.currency || 'Rs'}{service.price?.toLocaleString()}
+                              <span className="text-sm font-normal text-secondary">{service.unit}</span>
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Order Options */}
+                        <div className="flex gap-2 w-full mt-2">
+                          {inCart ? (
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveFromCart(service)}
+                              className="flex items-center justify-center gap-1.5 rounded-lg border border-red-500 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white px-3 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-300 flex-1"
+                            >
+                              <MaterialIcon name="remove_shopping_cart" className="text-sm" />
+                              Remove
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => handleAddToCart(service)}
+                              className="flex items-center justify-center gap-1.5 rounded-lg border border-slate-900 bg-slate-900 text-white hover:bg-primary hover:border-primary px-3 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-300 flex-1"
+                            >
+                              <MaterialIcon name="shopping_cart" className="text-sm" />
+                              Add
+                            </button>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => handleBuyNow(service)}
+                            className="flex items-center justify-center gap-1.5 rounded-lg kinetic-gradient text-white hover:scale-105 active:scale-95 px-3 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md flex-1"
+                          >
+                            <MaterialIcon name="bolt" className="text-sm" />
+                            Buy Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </main>
 

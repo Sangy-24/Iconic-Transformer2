@@ -47,10 +47,10 @@ const Login = () => {
           <div className="absolute bottom-[-5%] left-[-5%] h-[400px] w-[400px] rounded-full bg-primary blur-[100px]" />
         </div>
         <div className="relative z-10 flex max-w-2xl flex-col items-start p-16">
-          <div className="mb-12 flex items-center gap-3">
+          <Link to="/" className="mb-12 flex items-center gap-3 hover:opacity-90 transition-opacity">
             <MaterialIcon name="bolt" className="text-4xl text-primary-container" filled />
             <h1 className="font-headline text-3xl font-extrabold tracking-tighter text-white">Iconic Transformers</h1>
-          </div>
+          </Link>
           <div className="mb-10 rounded-lg border border-white/10 bg-white/5 p-1">
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqPuZX6hZKPopvdOnvM1sXQjBAAWNJe1Q-DwPgD3bBta5So7Yn3bGSD8YfQRwRT7mISGziJfP-7kNmUODX5XMUGXTM8qowMFwKulorixRmSpNoBEvzZFQgALtMnrNbE3sNMeFHen7Q-PszBY8p-jvb15htV-JTt3CxbUr9W8oal32BB2DF3U4C7lwwf7ROJVQnwvVxHYdRfMdjL2URjFcFbOSNufknUgvLfJbrfK50aMVUruOQgOu26ulEC8nngOd0FAwshNB2P-8"
@@ -95,10 +95,10 @@ const Login = () => {
         </div>
 
         <div className="w-full max-w-md">
-          <div className="mb-10 flex items-center gap-2 lg:hidden">
+          <Link to="/" className="mb-10 flex items-center gap-2 lg:hidden hover:opacity-90 transition-opacity">
             <MaterialIcon name="bolt" className="text-3xl text-primary" filled />
             <span className="font-headline text-xl font-bold tracking-tighter text-on-surface">Iconic Transformers</span>
-          </div>
+          </Link>
 
           <div className="mb-12">
             <h3 className="mb-2 font-headline text-3xl font-bold tracking-tight text-on-surface">Welcome Back</h3>
@@ -204,29 +204,7 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="relative my-10">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-outline-variant/20" />
-            </div>
-            <div className="relative flex justify-center text-xs font-bold uppercase tracking-[0.2em]">
-              <span className="bg-surface-bright px-4 text-outline/60">External Auth Protocols</span>
-            </div>
-          </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <button type="button" className="ghost-border flex items-center justify-center gap-3 rounded-lg bg-surface-container-lowest px-4 py-3 industrial-shadow transition-all hover:bg-surface-container-low">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo84J8e2evUfwJcsnOdsTBoF9J_klTrCS5Eo4IDHjP0yoo7eAZVWS8y1wy1SNiXFYN348OgnUIUt0rNPsXrB61-W7YcGzNA6I5gxxgU-l4x5ftUHE-DvUv4MaD2YfwXqrP0VP_xZmDbfwKV2Mpyf5ZPGCb7xpZS10Z5exv0BcfhUQAvqh2Em4DPj1Nt-ipKZaZRkofw2nMu6q_v-XYhvlMWs9PFJq3uhOdra9-bTeWiWNtA8DzvWfNw1ekpHYDQUVsZb0z8hZ1rQo"
-                alt="Google"
-                className="h-5 w-5 opacity-80"
-              />
-              <span className="text-sm font-semibold text-secondary">Google</span>
-            </button>
-            <button type="button" className="ghost-border flex items-center justify-center gap-3 rounded-lg bg-surface-container-lowest px-4 py-3 industrial-shadow transition-all hover:bg-surface-container-low">
-              <MaterialIcon name="cloud" className="text-blue-600" filled />
-              <span className="text-sm font-semibold text-secondary">Azure</span>
-            </button>
-          </div>
 
           <div className="mt-12 text-center">
             <p className="text-sm font-medium text-secondary">

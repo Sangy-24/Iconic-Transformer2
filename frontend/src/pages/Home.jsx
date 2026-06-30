@@ -27,7 +27,7 @@ const services = [
 ];
 
 const certifications = [
-  { icon: "workspace_premium", label: "ISO 9001 Certified" },
+  { icon: "workspace_premium", label: "ISO 9001:2015" },
   { icon: "shield_with_heart", label: "OSHA Gold Standard" },
   { icon: "security", label: "NERC/CIP Compliant" },
   { icon: "public", label: "Global Reach Network" },
@@ -152,7 +152,7 @@ const Home = () => (
         <div className="mb-16 flex flex-col items-center text-center">
           <div className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-secondary">Trusted by Industry Leaders</div>
           <div className="flex flex-wrap justify-center gap-12 opacity-40 grayscale transition-all hover:grayscale-0 md:gap-24">
-            {["Siemens", "ABB", "GE", "Schneider", "Mitsubishi"].map((brand) => (
+            {["TRANSCON", "KPEL", "MAHAVITARAN", "MAHAGENCO", "Vikas Transformers"].map((brand) => (
               <span key={brand} className="text-2xl font-bold text-on-surface">
                 {brand}
               </span>

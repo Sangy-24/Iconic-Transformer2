@@ -3,9 +3,11 @@ import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import MaterialIcon from "./MaterialIcon";
 
 const sidebarLinks = [
+  { to: "/", label: "Home", icon: "home" },
   { to: "/profile", label: "Dashboard", icon: "dashboard" },
   { to: "/services", label: "Services", icon: "handyman" },
-  { to: "/profile", label: "Orders", icon: "receipt_long", tab: "orders" },
+  { to: "/cart", label: "Cart", icon: "shopping_cart" },
+  { to: "/orders", label: "Orders", icon: "receipt_long" },
   { to: "/profile", label: "Wishlist", icon: "favorite", tab: "wishlist" },
   { to: "/profile", label: "Profile", icon: "person", tab: "profile" },
   { to: "/ai-tools", label: "AI Tools", icon: "psychology" },
@@ -57,7 +59,7 @@ const DashboardLayout = () => {
               <MaterialIcon name="precision_manufacturing" className="text-teal-400" filled />
             </div>
             <div>
-              <h2 className="font-headline text-lg font-bold leading-none text-teal-400">Precision Panel</h2>
+              <h2 className="font-headline text-lg font-bold leading-none text-teal-400">Iconic Transformers</h2>
               <p className="mt-1 text-[10px] uppercase tracking-widest text-slate-500">Industrial OS v2.0</p>
             </div>
           </div>
@@ -68,7 +70,7 @@ const DashboardLayout = () => {
             <NavLink
               key={item.label}
               to={item.to}
-              end={item.to === "/profile" && !item.tab}
+              end={item.to === "/" || (item.to === "/profile" && !item.tab)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 ${
                   isActive && (item.to !== "/profile" || !item.tab)
@@ -106,6 +108,10 @@ const DashboardLayout = () => {
       </main>
 
       <nav className="glass-panel fixed bottom-0 left-0 right-0 z-50 flex h-16 items-center justify-around px-4 shadow-[0_-4px_20px_rgba(32,44,57,0.1)] md:hidden">
+        <NavLink to="/" className="flex flex-col items-center gap-1 text-slate-500">
+          <MaterialIcon name="home" />
+          <span className="text-[10px] font-bold">HOME</span>
+        </NavLink>
         <NavLink to="/profile" className="flex flex-col items-center gap-1 text-slate-500">
           <MaterialIcon name="dashboard" />
           <span className="text-[10px] font-bold">DASHBOARD</span>

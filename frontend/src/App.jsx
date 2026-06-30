@@ -10,28 +10,37 @@ import AITools from "./pages/AITools";
 import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Orders from "./pages/Orders";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/services" element={<Services />} />
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/services" element={<Services />} />
 
-        <Route element={<MarketingLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
+          <Route element={<MarketingLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Route>
 
-        <Route element={<DashboardLayout />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/ai-tools" element={<AITools />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-        </Route>
-      </Routes>
-    </Router>
+          <Route element={<DashboardLayout />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/ai-tools" element={<AITools />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<Orders />} />
+          </Route>
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 }
 

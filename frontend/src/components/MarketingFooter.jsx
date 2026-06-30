@@ -75,18 +75,18 @@ const MarketingFooter = ({ compact = false }) => {
             </ul>
           </div>
           <div>
-            <h5 className="mb-8 text-xs font-bold uppercase tracking-widest text-white">Headquarters</h5>
+            <h5 className="mb-8 text-xs font-bold uppercase tracking-widest text-white">Address</h5>
             <p className="mb-4 text-sm">
-              Precision Plaza, Ind. Zone 4
+              B-19,Gane Khadpoli,Chiplun,
               <br />
-              Zurich, Switzerland CH-8001
+              Ratnagiri, Maharashtra, India
             </p>
-            <p className="mb-2 text-sm font-bold text-white">+41 44 123 4567</p>
-            <p className="text-sm text-primary">eng@iconic-transformers.tech</p>
+            <p className="mb-2 text-sm font-bold text-white">+91-7083579959</p>
+            <p className="text-sm text-primary">iconictransformer@gmail.com</p>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-8 border-t border-white/5 pt-12 text-center text-[10px] font-black uppercase tracking-[0.3em] md:flex-row">
-          <div>© {new Date().getFullYear()} Iconic Transformers. Engineering Excellence.</div>
+          <div>© {new Date().getFullYear()} Iconic Transformers and Electricals Pvt. Ltd.</div>
           <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest">
             <span className="cursor-pointer transition-colors hover:text-white">Legal</span>
             <span className="cursor-pointer transition-colors hover:text-white">Privacy Policy</span>

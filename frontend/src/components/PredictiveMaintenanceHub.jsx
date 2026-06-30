@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import MaterialIcon from "./MaterialIcon";
 import { fetchSampleFleetAnalysis, uploadFleetAnalysis } from "../api/mlService";
 
@@ -46,15 +46,15 @@ const PredictiveMaintenanceHub = () => {
 
   const maintenanceFileInputRef = useRef(null);
 
-  const applyAnalysis = (data, sourceLabel) => {
+  const applyAnalysis = useCallback((data, sourceLabel) => {
     setFleetData(data.fleet);
     setSummary(data.prediction);
     setDataSource(sourceLabel);
     setError("");
     setScheduledUnits({});
-  };
+  }, []);
 
-  const loadSampleFleet = async () => {
+  const loadSampleFleet = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -65,11 +65,11 @@ const PredictiveMaintenanceHub = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [applyAnalysis]);
 
   useEffect(() => {
     loadSampleFleet();
-  }, []);
+  }, [loadSampleFleet]);
 
   const handleMaintenanceUpload = async (event) => {
     event.preventDefault();
@@ -270,10 +270,10 @@ const PredictiveMaintenanceHub = () => {
           ) : (
             <div className="relative space-y-6">
               <div className="absolute bottom-0 left-[23px] top-0 w-0.5 bg-surface-container-low" />
-              {timeline.map((item) => {
+              {timeline.map((item, index) => {
                 const styles = TIMELINE_ICON_STYLES[item.icon_tone] || TIMELINE_ICON_STYLES.primary;
                 return (
-                  <div key={`${item.unit_id}-${item.title}`} className="relative flex items-center gap-6">
+                  <div key={`${item.unit_id}-${item.title}-${index}`} className="relative flex items-center gap-6">
                     <div className={`z-10 flex h-12 w-12 items-center justify-center rounded-full ${styles.iconClass}`}>
                       <MaterialIcon name={item.icon} className={styles.iconColor} />
                     </div>
@@ -290,86 +290,6 @@ const PredictiveMaintenanceHub = () => {
             </div>
           )}
         </div>
-      </section>
-
-      <section className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xs font-headline font-bold uppercase tracking-widest text-secondary">Live Asset Monitoring</h3>
-          <span className="flex items-center gap-2 text-xs font-bold text-primary">
-            <span className={`h-2 w-2 rounded-full bg-primary ${loading || analyzing ? "animate-pulse" : ""}`} />
-            {loading || analyzing ? "SYNCING DATA" : "LIVE DATA STREAM"}
-          </span>
-        </div>
-
-        {loading ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {[1, 2, 3, 4].map((slot) => (
-              <div key={slot} className="h-64 animate-pulse rounded-lg bg-surface-container-low" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {units.map((asset) => {
-              const isScheduled = Boolean(scheduledUnits[asset.id]);
-              return (
-                <div key={asset.id} className="rounded-lg bg-surface-container-lowest p-6 shadow-sm transition-shadow hover:shadow-md">
-                  <div className="mb-4 flex items-start justify-between">
-                    <div>
-                      <h4 className="font-bold text-slate-900">Unit {asset.id}</h4>
-                      <p className="text-xs text-slate-500">{asset.location}</p>
-                    </div>
-                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${STATUS_STYLES[asset.status_tone]}`}>
-                      {asset.status}
-                    </span>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-500">Temperature</span>
-                      <span className="font-semibold">{asset.temperature}°C</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-500">Vibration</span>
-                      <span className="font-semibold">{asset.vibration} mm/s</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-500">Oil Quality</span>
-                      <span className="font-semibold">{asset.oil_condition}%</span>
-                    </div>
-                    <div className="border-t border-surface-container pt-4">
-                      <p className="mb-2 text-[10px] font-bold uppercase text-slate-400">Failure Probability</p>
-                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-container-low">
-                        <div
-                          className={`h-full transition-all duration-500 ${asset.status_tone === "critical" ? "bg-error" : "bg-primary"}`}
-                          style={{ width: `${Math.min(asset.failure_probability, 100)}%` }}
-                        />
-                      </div>
-                      <span className={`mt-1 inline-block text-xs font-bold ${asset.status_tone === "critical" ? "text-error" : "text-primary"}`}>
-                        {asset.failure_probability}%
-                      </span>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => asset.needs_service && !isScheduled && scheduleService(asset.id)}
-                    disabled={!asset.needs_service || isScheduled}
-                    className={`mt-6 w-full rounded-lg py-2 text-xs font-bold transition-all ${
-                      isScheduled
-                        ? "bg-primary/10 text-primary"
-                        : asset.needs_service
-                          ? "bg-surface-container-high hover:bg-primary hover:text-white"
-                          : "cursor-not-allowed bg-surface-container-low text-on-surface-variant"
-                    }`}
-                  >
-                    {isScheduled ? "Service Scheduled" : asset.needs_service ? "Schedule Service" : "Monitoring"}
-                  </button>
-                  {isScheduled && (
-                    <p className="mt-2 text-center text-[10px] text-secondary">Booked {scheduledUnits[asset.id]}</p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
       </section>
     </>
   );
