@@ -2,6 +2,7 @@ from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import io
+from chatbot import ask_chatbot
 
 from models.predictive_maintenance import predict_health, analyze_fleet, load_sample_fleet_df, FEATURES
 
@@ -221,14 +222,22 @@ async def forecast_demand_products(file: UploadFile = File(...)):
 
 @app.post("/chatbot")
 async def chat(request: dict):
+
     query = request.get("query", "")
+
     if not query:
         raise HTTPException(status_code=400, detail="Query is required")
-    
-    return {
-        "status": "success",
-        "response": f"This is an automated response to your query regarding: '{query}'. Our team will review this if you need further assistance."
-    }
+
+    try:
+        answer = ask_chatbot(query)
+
+        return {
+            "status": "success",
+            "response": answer
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

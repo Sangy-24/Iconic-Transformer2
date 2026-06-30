@@ -14,6 +14,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import { CartProvider } from "./context/CartContext";
+import Chatbot from "./components/chatbot";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             <Route path="/orders" element={<Orders />} />
           </Route>
         </Routes>
+        {/* AI Chatbot appears on every page */}
+        <Chatbot />
+        
       </Router>
     </CartProvider>
   );

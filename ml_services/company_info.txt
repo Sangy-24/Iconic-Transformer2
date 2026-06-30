@@ -1,0 +1,366 @@
+====================================================
+ICONIC TRANSFORMERS
+Official Company Information
+====================================================
+
+Company Name:
+Iconic Transformers
+
+About the Company:
+Iconic Transformers is a transformer service and maintenance company that specializes in installation, preventive maintenance, condition monitoring, fault diagnosis, repair support, and AI-powered predictive maintenance solutions. The company focuses on improving transformer reliability, minimizing downtime, extending equipment life, and ensuring uninterrupted electrical power for industrial and commercial customers.
+
+Mission:
+To provide reliable, efficient, and intelligent transformer maintenance solutions using modern engineering practices and Artificial Intelligence technologies.
+
+Vision:
+To become a leading transformer maintenance and diagnostic solutions provider by integrating Artificial Intelligence, Machine Learning, and data-driven decision making into electrical infrastructure management.
+
+Core Values:
+• Safety
+• Quality
+• Innovation
+• Customer Satisfaction
+• Reliability
+• Professionalism
+
+====================================================
+SERVICES OFFERED
+====================================================
+
+1. Transformer Installation
+
+Iconic Transformers provides complete transformer installation services for industrial, commercial, and utility applications. Installation includes site inspection, transformer positioning, electrical cable termination, earthing verification, insulation testing, commissioning, and final operational testing.
+
+----------------------------------------------------
+
+2. Preventive Maintenance
+
+Preventive maintenance helps reduce unexpected transformer failures through scheduled inspections and servicing.
+
+Services include:
+• Visual inspection
+• Tightening electrical connections
+• Cleaning transformer bushings
+• Cooling system inspection
+• Oil level inspection
+• Thermographic inspection
+• Load monitoring
+• Electrical testing
+
+----------------------------------------------------
+
+3. Transformer Health Assessment
+
+Engineers evaluate transformer condition using electrical parameters and inspection reports.
+
+Assessment includes:
+• Transformer health score
+• Risk evaluation
+• Remaining service life estimation
+• Maintenance recommendations
+
+----------------------------------------------------
+
+4. Transformer Oil Testing
+
+Transformer oil analysis is performed to evaluate insulation quality and transformer condition.
+
+Oil testing includes:
+• Dielectric Breakdown Voltage (BDV)
+• Moisture content analysis
+• Acidity test
+• Dissolved Gas Analysis (DGA)
+• Oil contamination detection
+
+----------------------------------------------------
+
+5. Emergency Breakdown Support
+
+The company provides emergency support for transformer failures.
+
+Support includes:
+• Fault inspection
+• Initial diagnosis
+• Temporary restoration
+• Maintenance planning
+• Repair recommendations
+
+----------------------------------------------------
+
+6. Transformer Inspection
+
+Routine inspections include:
+
+• Leakage inspection
+• Bushing inspection
+• Cooling fan inspection
+• Conservator tank inspection
+• Breather inspection
+• Earthing inspection
+• Temperature monitoring
+
+----------------------------------------------------
+
+7. Fault Diagnosis
+
+Common transformer faults detected include:
+
+• Overheating
+• Insulation degradation
+• Oil leakage
+• Cooling failure
+• Partial discharge
+• Moisture contamination
+• Overloading
+
+----------------------------------------------------
+
+8. Maintenance Planning
+
+Maintenance planning helps schedule transformer servicing based on equipment condition instead of fixed intervals.
+
+Benefits:
+• Lower maintenance cost
+• Reduced downtime
+• Increased transformer life
+• Improved reliability
+
+====================================================
+AI FEATURES
+====================================================
+
+1. Predictive Maintenance
+
+The AI-powered Predictive Maintenance module analyzes transformer operational data and predicts equipment health.
+
+Machine Learning model:
+Random Forest Classifier
+
+Input Parameters include:
+
+• Oil Temperature
+• Winding Temperature
+• Load Percentage
+• Oil Level
+• Voltage
+• Current
+• Ambient Temperature
+• Moisture
+• Vibration
+• Transformer Age
+
+Output:
+
+• Healthy
+• Attention Required
+• Critical Condition
+
+Benefits:
+
+• Early fault detection
+• Reduced breakdowns
+• Lower maintenance cost
+• Increased transformer reliability
+• Better maintenance planning
+
+----------------------------------------------------
+
+2. Demand Forecasting
+
+Demand Forecasting predicts future material requirements using historical maintenance records.
+
+Machine Learning Model:
+Facebook Prophet
+
+Forecast Period:
+12 Weeks
+
+Benefits:
+
+• Better inventory planning
+• Reduced stock shortages
+• Improved procurement planning
+• Lower inventory cost
+
+====================================================
+WEBSITE FEATURES
+====================================================
+
+The Iconic Transformers website provides:
+
+• User Registration
+• Secure Login
+• Customer Dashboard
+• Profile Management
+• AI Predictive Maintenance
+• AI Demand Forecasting
+• Customer Support
+• Contact Information
+• Company Information
+• AI Chatbot
+
+====================================================
+AI CHATBOT
+====================================================
+
+The AI chatbot assists customers by answering questions related to:
+
+• Company information
+• Transformer services
+• Preventive maintenance
+• Predictive maintenance
+• Demand forecasting
+• Transformer oil testing
+• Emergency support
+• Website navigation
+• Office timings
+• Contact details
+
+The chatbot only answers questions related to Iconic Transformers.
+
+====================================================
+FREQUENTLY ASKED QUESTIONS
+====================================================
+
+Q: What services does Iconic Transformers provide?
+
+A:
+Transformer installation, preventive maintenance, oil testing, transformer inspection, fault diagnosis, predictive maintenance, emergency support, and demand forecasting.
+
+----------------------------------------------------
+
+Q: What is Predictive Maintenance?
+
+A:
+Predictive Maintenance is an Artificial Intelligence solution that predicts transformer health using machine learning before major failures occur.
+
+----------------------------------------------------
+
+Q: What is Demand Forecasting?
+
+A:
+Demand Forecasting predicts future spare part and material requirements using historical maintenance data.
+
+----------------------------------------------------
+
+Q: Why is transformer maintenance important?
+
+A:
+Regular maintenance improves transformer efficiency, extends equipment life, reduces unexpected failures, and improves operational safety.
+
+----------------------------------------------------
+
+Q: What does transformer oil testing check?
+
+A:
+Transformer oil testing checks insulation quality, moisture content, dielectric strength, acidity, and contamination.
+
+----------------------------------------------------
+
+Q: How often should transformers be inspected?
+
+A:
+Routine inspections should be performed periodically according to transformer operating conditions and maintenance schedules.
+
+----------------------------------------------------
+
+Q: What happens during preventive maintenance?
+
+A:
+Engineers inspect the transformer, perform electrical testing, inspect cooling systems, clean components, tighten connections, and evaluate transformer health.
+
+----------------------------------------------------
+
+Q: Does the company use Artificial Intelligence?
+
+A:
+Yes. The company uses AI for Predictive Maintenance and Demand Forecasting to improve maintenance efficiency and reliability.
+
+----------------------------------------------------
+
+Q: Can AI prevent transformer failures?
+
+A:
+AI cannot completely prevent failures but can predict high-risk conditions early so maintenance can be performed before breakdowns occur.
+
+----------------------------------------------------
+
+Q: What industries are served?
+
+A:
+Industrial facilities, manufacturing plants, commercial buildings, electrical utilities, and infrastructure projects.
+
+====================================================
+OFFICE HOURS
+====================================================
+
+Monday to Saturday
+
+09:00 AM to 06:00 PM
+
+Sunday:
+Closed
+
+====================================================
+CONTACT INFORMATION
+====================================================
+
+Company Name:
+Iconic Transformers
+
+Email:
+iconictransformers@gmail.com
+
+Phone:
+721-840-8385
+
+Website:
+www.iconictransformers.com
+
+====================================================
+SAFETY GUIDELINES
+====================================================
+
+• Follow electrical safety procedures.
+• Ensure proper earthing before maintenance.
+• Use insulated protective equipment.
+• Disconnect power before servicing.
+• Perform transformer testing only by trained personnel.
+• Follow manufacturer recommendations during maintenance.
+
+====================================================
+MAINTENANCE BENEFITS
+====================================================
+
+Regular transformer maintenance provides:
+
+• Longer equipment life
+• Reduced operational cost
+• Better energy efficiency
+• Improved safety
+• Lower downtime
+• Higher reliability
+• Reduced emergency repairs
+
+====================================================
+LIMITATIONS OF THE CHATBOT
+====================================================
+
+The chatbot only provides information related to Iconic Transformers.
+
+It does not answer:
+
+• General knowledge questions
+• Mathematics
+• Programming
+• Medical advice
+• Legal advice
+• Financial advice
+• Questions about competitors
+• Topics unrelated to Iconic Transformers
+
+If a question falls outside the company's domain, the chatbot politely informs the user that it only supports Iconic Transformers-related queries.
+
+====================================================
+END OF COMPANY INFORMATION
+====================================================
